@@ -1,0 +1,241 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+}
+
+/* Светлая тема */
+:root[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --navbar-bg: #2563eb;
+    --navbar-color: #ffffff;
+    --input-bg: #ffffff;
+    --input-color: #1e293b;
+    --header-bg: #2563eb;
+    --header-color: #ffffff;
+    --link-color: #2563eb;
+    --link-hover-color: #1d4ed8;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Темная тема */
+:root[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --navbar-bg: #1e293b;
+    --navbar-color: #e2e8f0;
+    --input-bg: #334155;
+    --input-color: #e2e8f0;
+    --header-bg: #1e293b;
+    --header-color: #e2e8f0;
+    --link-color: #60a5fa;
+    --link-hover-color: #93c5fd;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Основные стили */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: all 0.3s ease;
+}
+
+/* Навигационная панель */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+.navbar-brand {
+    color: var(--navbar-color) !important;
+    font-weight: 600;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--navbar-color) !important;
+    opacity: 0.9;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    opacity: 1;
+}
+
+/* Карточки */
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--card-shadow);
+}
+
+.card-body {
+    color: var(--text-color) !important;
+}
+
+/* Формы */
+.form-control {
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    border-color: var(--border-color) !important;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.form-label {
+    color: var(--text-color) !important;
+    font-weight: 500;
+}
+
+/* Кнопки */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--link-hover-color) !important;
+    border-color: var(--link-hover-color) !important;
+    transform: translateY(-1px);
+}
+
+/* Чат */
+.chat-container {
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.message-own {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: 20%;
+}
+
+.message-other {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-right: 20%;
+}
+
+/* Отделы */
+.department-tree {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.department-item {
+    margin: 10px 0;
+    padding: 5px;
+    border-left: 2px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Переключатель темы */
+.theme-switch {
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--navbar-color) !important;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch:hover {
+    transform: scale(1.1);
+}
+
+.theme-switch i {
+    font-size: 1.2rem;
+}
+
+/* Профиль */
+.profile-section {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Админ-панель */
+.admin-panel {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    color: var(--text-color);
+}
+
+/* Ссылки */
+a {
+    color: var(--link-color) !important;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color) !important;
+    text-decoration: none;
+}
+
+/* Алерты */
+.alert {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Текст */
+h1, h2, h3, h4, h5, h6, p, span, div {
+    color: var(--text-color) !important;
+}
+
+/* Таблицы */
+table {
+    color: var(--text-color) !important;
+}
+
+/* Селекты */
+select {
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+select option {
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+} 

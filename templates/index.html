@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3>Отделы</h3>
+                <div class="department-tree">
+                    {% for department in departments %}
+                        {% if not department.parent_id %}
+                            <div class="department-item">
+                                <a href="{{ url_for('chat', department_id=department.id) }}">{{ department.name }}</a>
+                                {% set ns = namespace(found=false) %}
+                                {% for sub_dept in departments %}
+                                    {% if sub_dept.parent_id == department.id %}
+                                        {% if not ns.found %}
+                                            <ul class="department-tree">
+                                        {% endif %}
+                                        {% set ns.found = true %}
+                                        <li class="department-item">
+                                            <a href="{{ url_for('chat', department_id=sub_dept.id) }}">{{ sub_dept.name }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if ns.found %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        {% if current_user.is_admin %}
+        <div class="card">
+            <div class="card-body">
+                <h4>Добавить отдел</h4>
+                <form id="add-department-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Название отдела</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="parent_id" class="form-label">Родительский отдел</label>
+                        <select class="form-control" id="parent_id" name="parent_id">
+                            <option value="">Нет</option>
+                            {% for department in departments %}
+                                <option value="{{ department.id }}">{{ department.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h3>Добро пожаловать, {{ current_user.username }}!</h3>
+                <p>Выберите отдел из списка слева, чтобы начать общение.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

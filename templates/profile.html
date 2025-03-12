@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="profile-section">
+            <h3>Изменить имя пользователя</h3>
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Новое имя пользователя</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ current_user.username }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Обновить имя</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="profile-section">
+            <h3>Изменить пароль</h3>
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Новый пароль</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Обновить пароль</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="profile-section">
+            <h3>Информация о пользователе</h3>
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+            <p><strong>Отдел:</strong> 
+                {% if current_user.department %}
+                    {{ current_user.department.name }}
+                {% else %}
+                    Не назначен
+                {% endif %}
+            </p>
+            <p><strong>Статус:</strong> 
+                {% if current_user.is_admin %}
+                    Администратор
+                {% else %}
+                    Пользователь
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
