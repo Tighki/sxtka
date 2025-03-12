@@ -12,7 +12,7 @@
             {% for message in messages %}
                 <div class="message {% if message.user_id == current_user.id %}message-own{% else %}message-other{% endif %}">
                     <strong>{{ message.user.username }}</strong>
-                    <p>{{ message.content }}</p>
+                    <div class="message-content">{{ message.content }}</div>
                     <small>{{ message.timestamp.strftime('%d.%m.%Y %H:%M') }}</small>
                     {% if current_user.is_admin %}
                         <button class="btn btn-sm btn-danger float-end delete-message" data-message-id="{{ message.id }}">
@@ -23,9 +23,10 @@
             {% endfor %}
         </div>
         
-        <form id="message-form" data-department-id="{{ department.id }}">
+        <form id="message-form">
+            <input type="hidden" id="department_id" value="{{ department.id }}">
             <div class="input-group">
-                <input type="text" class="form-control" id="message-input" placeholder="Введите сообщение...">
+                <input type="text" class="form-control" id="message" placeholder="Введите сообщение...">
                 <button class="btn btn-primary" type="submit">Отправить</button>
             </div>
         </form>

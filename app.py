@@ -250,8 +250,9 @@ def handle_message(data):
     emit('new_message', {
         'content': message.content,
         'username': current_user.username,
-        'timestamp': message.timestamp.isoformat(),
-        'user_id': current_user.id
+        'timestamp': message.timestamp.strftime('%d.%m.%Y %H:%M'),
+        'user_id': current_user.id,
+        'is_own': current_user.id == message.user_id
     }, broadcast=True)
 
 if __name__ == '__main__':
