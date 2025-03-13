@@ -187,6 +187,25 @@ def delete_user(user_id):
     db.session.commit()
     return jsonify({'success': True})
 
+@app.route('/admin/update_user_department/<int:user_id>', methods=['POST'])
+@login_required
+def update_user_department(user_id):
+    if not current_user.is_admin:
+        return jsonify({'success': False, 'message': 'Доступ запрещен'})
+    
+    user = User.query.get_or_404(user_id)
+    data = request.get_json()
+    department_id = data.get('department_id')
+    
+    if department_id:
+        department = Department.query.get_or_404(int(department_id))
+        user.department_id = department.id
+    else:
+        user.department_id = None
+    
+    db.session.commit()
+    return jsonify({'success': True})
+
 @app.route('/admin/toggle_admin/<int:user_id>', methods=['POST'])
 @login_required
 def toggle_admin(user_id):
@@ -252,7 +271,8 @@ def handle_message(data):
         'username': current_user.username,
         'timestamp': message.timestamp.strftime('%d.%m.%Y %H:%M'),
         'user_id': current_user.id,
-        'is_own': current_user.id == message.user_id
+        'is_own': current_user.id == message.user_id,
+        'message_id': message.id
     }, broadcast=True)
 
 if __name__ == '__main__':

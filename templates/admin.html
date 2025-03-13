@@ -24,11 +24,14 @@
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        {% if user.department %}
-                            {{ user.department.name }}
-                        {% else %}
-                            Не назначен
-                        {% endif %}
+                        <select class="form-control department-select" data-user-id="{{ user.id }}">
+                            <option value="">Не назначен</option>
+                            {% for department in departments %}
+                                <option value="{{ department.id }}" {% if user.department_id == department.id %}selected{% endif %}>
+                                    {{ department.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
                     </td>
                     <td>
                         {% if user.is_admin %}
@@ -166,6 +169,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+        });
+    });
+
+    // Обработка изменения отдела пользователя
+    document.querySelectorAll('.department-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const userId = this.dataset.userId;
+            const departmentId = this.value;
+            
+            fetch(`/admin/update_user_department/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    department_id: departmentId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Показываем уведомление об успешном обновлении
+                    alert('Отдел пользователя успешно обновлен');
+                } else {
+                    // В случае ошибки возвращаем предыдущее значение
+                    location.reload();
+                }
+            });
         });
     });
 });

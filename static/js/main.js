@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация Socket.IO
     var socket = io();
 
+    // Установка задержки анимации для отделов
+    document.querySelectorAll('.department-item').forEach((item, index) => {
+        item.style.setProperty('--animation-order', index);
+    });
+
     // Обработка сообщений чата
     if (document.querySelector('#message-form')) {
         document.querySelector('#message-form').addEventListener('submit', function(e) {
@@ -9,25 +14,48 @@ document.addEventListener('DOMContentLoaded', function() {
             var messageInput = document.querySelector('#message');
             var message = messageInput.value;
             if (message.trim()) {
-                socket.emit('message', {
-                    message: message,
+                socket.emit('send_message', {
+                    content: message,
                     department_id: document.querySelector('#department_id').value
                 });
                 messageInput.value = '';
             }
         });
 
-        socket.on('message', function(data) {
+        socket.on('new_message', function(data) {
             var chatContainer = document.querySelector('.chat-container');
             var messageDiv = document.createElement('div');
             messageDiv.className = 'message ' + (data.is_own ? 'message-own' : 'message-other');
             messageDiv.innerHTML = `
-                <strong>${data.username}</strong><br>
-                ${data.message}<br>
+                <strong>${data.username}</strong>
+                <div class="message-content">${data.content}</div>
                 <small>${data.timestamp}</small>
+                ${currentUser.is_admin ? `
+                    <button class="btn btn-sm btn-danger float-end delete-message" data-message-id="${data.message_id}">
+                        Удалить
+                    </button>
+                ` : ''}
             `;
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
+        });
+
+        // Обработка удаления сообщений
+        document.querySelector('.chat-container').addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-message')) {
+                if (confirm('Вы уверены, что хотите удалить это сообщение?')) {
+                    const messageId = e.target.dataset.messageId;
+                    fetch(`/admin/delete_message/${messageId}`, {
+                        method: 'POST'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            e.target.closest('.message').remove();
+                        }
+                    });
+                }
+            }
         });
     }
 
