@@ -9,6 +9,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработка сообщений чата
     if (document.querySelector('#message-form')) {
+        const fileInput = document.querySelector('#file-input');
+        const attachButton = document.querySelector('#attach-button');
+
+        // Обработка клика по кнопке прикрепления файла
+        attachButton.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        // Обработка выбора файла
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                if (!file.type.startsWith('image/')) {
+                    alert('Пожалуйста, выберите изображение');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('image', file);
+                formData.append('department_id', document.querySelector('#department_id').value);
+
+                fetch('/upload_image', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        socket.emit('send_message', {
+                            content: data.image_url,
+                            department_id: document.querySelector('#department_id').value,
+                            is_image: true
+                        });
+                    } else {
+                        alert('Ошибка при загрузке изображения');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Ошибка при загрузке изображения');
+                })
+                .finally(() => {
+                    fileInput.value = ''; // Очищаем поле выбора файла
+                });
+            }
+        });
+
         document.querySelector('#message-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var messageInput = document.querySelector('#message');
@@ -16,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (message.trim()) {
                 socket.emit('send_message', {
                     content: message,
-                    department_id: document.querySelector('#department_id').value
+                    department_id: document.querySelector('#department_id').value,
+                    is_image: false
                 });
                 messageInput.value = '';
             }
@@ -26,19 +74,42 @@ document.addEventListener('DOMContentLoaded', function() {
             var chatContainer = document.querySelector('.chat-container');
             var messageDiv = document.createElement('div');
             messageDiv.className = 'message ' + (data.is_own ? 'message-own' : 'message-other');
+            
+            const messageContent = data.is_image 
+                ? `<img src="${data.content}" class="chat-image" alt="Изображение">`
+                : escapeHtml(data.content);
+            
             messageDiv.innerHTML = `
-                <strong>${data.username}</strong>
-                <div class="message-content">${data.content}</div>
-                <small>${data.timestamp}</small>
-                ${currentUser.is_admin ? `
-                    <button class="btn btn-sm btn-danger float-end delete-message" data-message-id="${data.message_id}">
-                        Удалить
-                    </button>
-                ` : ''}
+                <div class="message-bubble">
+                    <div class="message-info">
+                        <span class="message-author">${escapeHtml(data.username)}</span>
+                    </div>
+                    <div class="message-content">${messageContent}</div>
+                    <div class="message-meta">
+                        <span class="message-time">${data.timestamp.split(' ')[1]}</span>
+                        ${data.is_own ? '<span class="message-status"><i class="fas fa-check-double"></i></span>' : ''}
+                    </div>
+                    ${currentUser.is_admin ? `
+                        <button class="btn-delete-message delete-message" data-message-id="${data.message_id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    ` : ''}
+                </div>
             `;
-            chatContainer.appendChild(messageDiv);
+            
+            chatContainer.querySelector('.messages-wrapper').appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         });
+
+        // Функция для экранирования HTML
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
 
         // Обработка удаления сообщений
         document.querySelector('.chat-container').addEventListener('click', function(e) {

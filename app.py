@@ -4,8 +4,10 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_mail import Mail, Message
 from flask_socketio import SocketIO, emit
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
+import uuid
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -17,6 +19,13 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'your-email@gmail.com'
 app.config['MAIL_PASSWORD'] = 'your-password'
+app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static', 'uploads')
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB макс. размер файла
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Инициализация расширений
 db = SQLAlchemy(app)
@@ -48,6 +57,7 @@ class Message(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
+    is_image = db.Column(db.Boolean, default=False)
     user = db.relationship('User', backref='messages')
 
 @login_manager.user_loader
@@ -261,7 +271,8 @@ def handle_message(data):
     message = Message(
         content=data['content'],
         user_id=current_user.id,
-        department_id=data['department_id']
+        department_id=data['department_id'],
+        is_image=data.get('is_image', False)
     )
     db.session.add(message)
     db.session.commit()
@@ -272,11 +283,36 @@ def handle_message(data):
         'timestamp': message.timestamp.strftime('%d.%m.%Y %H:%M'),
         'user_id': current_user.id,
         'is_own': current_user.id == message.user_id,
-        'message_id': message.id
+        'message_id': message.id,
+        'is_image': message.is_image
     }, broadcast=True)
+
+@app.route('/upload_image', methods=['POST'])
+@login_required
+def upload_image():
+    if 'image' not in request.files:
+        return jsonify({'success': False, 'message': 'Нет файла'})
+    
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'success': False, 'message': 'Файл не выбран'})
+    
+    if file and allowed_file(file.filename):
+        # Генерируем уникальное имя файла
+        filename = secure_filename(str(uuid.uuid4()) + os.path.splitext(file.filename)[1])
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
+        # Возвращаем URL изображения
+        image_url = url_for('static', filename=f'uploads/{filename}')
+        return jsonify({'success': True, 'image_url': image_url})
+    
+    return jsonify({'success': False, 'message': 'Недопустимый тип файла'})
 
 if __name__ == '__main__':
     with app.app_context():
+        # Удаляем все таблицы
+        db.drop_all()
+        # Создаем таблицы заново
         db.create_all()
         # Создаем администратора по умолчанию, если его нет
         admin = User.query.filter_by(email='admin@example.com').first()

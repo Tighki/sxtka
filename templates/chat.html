@@ -3,37 +3,70 @@
 {% block title %}Чат - {{ department.name }}{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-header">
-        <h3>{{ department.name }}</h3>
+<div class="chat-wrapper">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <h3>{{ department.name }}</h3>
+            <small class="online-status">Отдел активен</small>
+        </div>
     </div>
-    <div class="card-body">
-        <div class="chat-container" id="chat-container">
+    
+    <div class="chat-container" id="chat-container">
+        <div class="messages-wrapper">
             {% for message in messages %}
                 <div class="message {% if message.user_id == current_user.id %}message-own{% else %}message-other{% endif %}">
-                    <strong>{{ message.user.username }}</strong>
-                    <div class="message-content">{{ message.content }}</div>
-                    <small>{{ message.timestamp.strftime('%d.%m.%Y %H:%M') }}</small>
-                    {% if current_user.is_admin %}
-                        <button class="btn btn-sm btn-danger float-end delete-message" data-message-id="{{ message.id }}">
-                            Удалить
-                        </button>
-                    {% endif %}
+                    <div class="message-bubble">
+                        <div class="message-info">
+                            <span class="message-author">{{ message.user.username }}</span>
+                        </div>
+                        <div class="message-content">
+                            {% if message.is_image %}
+                                <img src="{{ message.content }}" class="chat-image" alt="Изображение">
+                            {% else %}
+                                {{ message.content }}
+                            {% endif %}
+                        </div>
+                        <div class="message-meta">
+                            <span class="message-time">{{ message.timestamp.strftime('%H:%M') }}</span>
+                            {% if message.user_id == current_user.id %}
+                                <span class="message-status">
+                                    <i class="fas fa-check-double"></i>
+                                </span>
+                            {% endif %}
+                        </div>
+                        {% if current_user.is_admin %}
+                            <button class="btn-delete-message delete-message" data-message-id="{{ message.id }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         </div>
-        
-        <form id="message-form">
+    </div>
+    
+    <div class="chat-input-wrapper">
+        <form id="message-form" enctype="multipart/form-data">
             <input type="hidden" id="department_id" value="{{ department.id }}">
+            <input type="file" id="file-input" accept="image/*" style="display: none;">
             <div class="input-group">
-                <input type="text" class="form-control" id="message" placeholder="Введите сообщение...">
-                <button class="btn btn-primary" type="submit">Отправить</button>
+                <button type="button" class="btn btn-attach" id="attach-button">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <input type="text" class="form-control message-input" id="message" 
+                       placeholder="Написать сообщение..." autocomplete="off">
+                <button class="btn btn-send" type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    const currentUserId = {{ current_user.id }};
+    const currentUser = {
+        id: {{ current_user.id }},
+        is_admin: {% if current_user.is_admin %}true{% else %}false{% endif %}
+    };
 </script>
 {% endblock %} 
