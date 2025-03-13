@@ -366,7 +366,6 @@ body {
 
 .btn-delete-message {
     position: absolute;
-    right: -30px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -378,12 +377,21 @@ body {
     cursor: pointer;
 }
 
+.message-own .btn-delete-message {
+    left: -30px;
+}
+
+.message-other .btn-delete-message {
+    right: -30px;
+}
+
 .message:hover .btn-delete-message {
     opacity: 0.7;
 }
 
 .btn-delete-message:hover {
     opacity: 1 !important;
+    color: #ef4444 !important;
 }
 
 .chat-input-wrapper {

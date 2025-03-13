@@ -113,16 +113,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Обработка удаления сообщений
         document.querySelector('.chat-container').addEventListener('click', function(e) {
-            if (e.target.classList.contains('delete-message')) {
+            const deleteButton = e.target.closest('.btn-delete-message');
+            if (deleteButton) {
                 if (confirm('Вы уверены, что хотите удалить это сообщение?')) {
-                    const messageId = e.target.dataset.messageId;
+                    const messageId = deleteButton.dataset.messageId;
                     fetch(`/admin/delete_message/${messageId}`, {
                         method: 'POST'
                     })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            e.target.closest('.message').remove();
+                            deleteButton.closest('.message').remove();
                         }
                     });
                 }
