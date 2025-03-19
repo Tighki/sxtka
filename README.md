@@ -20,37 +20,22 @@
 
 <div align="center">
 
-<table>
-<tr>
-<td>
-  
-[![GitHub stats](https://github-readme-stats.vercel.app/api?username=Tighki&show_icons=true&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
+<!-- Статистика GitHub -->
+![GitHub Stats](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=Tighki&theme=react&show_icons=true&locale=ru)
 
-</td>
-<td>
+<!-- Используемые языки -->
+![Top Languages](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=Tighki&theme=react&layout=compact&locale=ru)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Tighki&layout=compact&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
+<!-- Статистика активности -->
+![Streak Stats](https://streak-stats.demolab.com?user=Tighki&theme=react&locale=ru)
 
-</td>
-</tr>
-</table>
-
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=Tighki&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
-
-<details>
-<summary>📈 Подробная статистика проекта</summary>
-
-| 📊 Метрика | 🎯 Значение |
-|------------|------------|
-| Коммиты за последний месяц | ![Commits](https://img.shields.io/github/commit-activity/m/Tighki/sxtka?style=for-the-badge) |
-| Последний коммит | ![Last Commit](https://img.shields.io/github/last-commit/Tighki/sxtka?style=for-the-badge) |
-| Открытые issues | ![Issues](https://img.shields.io/github/issues/Tighki/sxtka?style=for-the-badge) |
-| Размер репозитория | ![Repo Size](https://img.shields.io/github/repo-size/Tighki/sxtka?style=for-the-badge) |
-
-</details>
+<!-- Простая статистика с бейджами -->
+![Stars](https://img.shields.io/github/stars/Tighki/sxtka?style=for-the-badge&color=blue)
+![Forks](https://img.shields.io/github/forks/Tighki/sxtka?style=for-the-badge&color=blue)
+![Issues](https://img.shields.io/github/issues/Tighki/sxtka?style=for-the-badge&color=blue)
+![Pull Requests](https://img.shields.io/github/issues-pr/Tighki/sxtka?style=for-the-badge&color=blue)
 
 </div>
-
 
 ## ✨ Возможности
 
