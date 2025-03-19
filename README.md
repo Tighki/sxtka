@@ -26,9 +26,6 @@
 <!-- Languages Card с увеличенной шириной -->
 <img width="495" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=Tighki&theme=react&layout=compact&locale=ru&card_width=495" alt="Top Languages"/>
 
-<!-- Streak Stats с увеличенной шириной -->
-<img width="495" src="https://streak-stats.demolab.com?user=Tighki&theme=react&locale=ru&card_width=495" alt="GitHub Streak"/>
-
 <!-- Статистика репозитория -->
 <p align="center">
   <img src="https://img.shields.io/github/stars/Tighki/sxtka?style=for-the-badge&color=blue" alt="Stars"/>
