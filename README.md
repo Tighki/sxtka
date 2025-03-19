@@ -122,34 +122,6 @@ flask run
 <img src="https://raw.githubusercontent.com/Tighki/sxtka/main/docs/demo.gif" alt="Demo"/>
 </details>
 
-</div>
-
-## 💡 Технологии
-
-<div align="center">
-<div style="background: #1a1b27; padding: 20px; border-radius: 10px; display: inline-block;">
-  <a href="https://www.python.org/" target="_blank" title="Python • 3.8+">
-    <img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python"/>
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://flask.palletsprojects.com/" target="_blank" title="Flask • 2.0+">
-    <img src="https://skillicons.dev/icons?i=flask" width="48" height="48" alt="Flask"/>
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://www.sqlalchemy.org/" target="_blank" title="SQLAlchemy • 1.4+">
-    <img src="https://skillicons.dev/icons?i=sqlite" width="48" height="48" alt="SQLAlchemy"/>
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://www.sqlite.org/" target="_blank" title="SQLite • 3.0+">
-    <img src="https://skillicons.dev/icons?i=sqlite" width="48" height="48" alt="SQLite"/>
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://mui.com/" target="_blank" title="Material-UI • 5.0+">
-    <img src="https://skillicons.dev/icons?i=materialui" width="48" height="48" alt="Material-UI"/>
-  </a>
-</div>
-</div>
-
 ## 📞 Связь с нами
 
 <div align="center">
