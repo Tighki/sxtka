@@ -4,10 +4,6 @@
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2196F3&center=true&vCenter=true&width=435&lines=Современная+система+коммуникации;Удобное+управление+отделами;Real-time+чат+между+сотрудниками;Безопасность+и+производительность" alt="Typing SVG" />
 
-[![Статус проекта](https://img.shields.io/badge/Статус-Активный-success?style=for-the-badge)](https://github.com/Tighki/sxtka)
-[![Версия](https://img.shields.io/badge/Версия-1.0.0-blue?style=for-the-badge)](https://github.com/Tighki/sxtka)
-[![Лицензия](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
 <p align="center">
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
 <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
@@ -24,24 +20,37 @@
 
 <div align="center">
 
-![Activity Graph](https://activity-graph.herokuapp.com/graph?username=Tighki&theme=react-dark&hide_border=true&area=true)
-
-</div>
-
-## 🎯 О проекте
-
-<div align="center">
+<table>
+<tr>
+<td>
   
-### Взгляните на наши метрики:
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=Tighki&show_icons=true&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
+
+</td>
+<td>
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Tighki&layout=compact&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
+
+</td>
+</tr>
+</table>
+
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=Tighki&theme=react&locale=ru)](https://github.com/Tighki/sxtka)
+
+<details>
+<summary>📈 Подробная статистика проекта</summary>
 
 | 📊 Метрика | 🎯 Значение |
 |------------|------------|
-| Скорость отклика | ⚡ 100ms |
-| Доступность | 🎯 99.9% |
-| Активных пользователей | 👥 1000+ |
-| Сообщений в день | 💬 10000+ |
+| Коммиты за последний месяц | ![Commits](https://img.shields.io/github/commit-activity/m/Tighki/sxtka?style=for-the-badge) |
+| Последний коммит | ![Last Commit](https://img.shields.io/github/last-commit/Tighki/sxtka?style=for-the-badge) |
+| Открытые issues | ![Issues](https://img.shields.io/github/issues/Tighki/sxtka?style=for-the-badge) |
+| Размер репозитория | ![Repo Size](https://img.shields.io/github/repo-size/Tighki/sxtka?style=for-the-badge) |
+
+</details>
 
 </div>
+
 
 ## ✨ Возможности
 
@@ -112,24 +121,6 @@ flask run
 <summary>🎬 Демо интерфейса (нажмите чтобы посмотреть)</summary>
 <img src="https://raw.githubusercontent.com/Tighki/sxtka/main/docs/demo.gif" alt="Demo"/>
 </details>
-
-</div>
-
-## 📈 Прогресс разработки
-
-<div align="center">
-
-```mermaid
-gantt
-    title График развития проекта
-    dateFormat  YYYY-MM-DD
-    section Фаза 1
-    Разработка базы    :done,    des1, 2024-01-01, 2024-02-01
-    Интерфейс         :active,  des2, 2024-02-01, 2024-03-01
-    section Фаза 2
-    Тестирование      :         des3, after des2, 30d
-    Релиз            :         des4, after des3, 10d
-```
 
 </div>
 
