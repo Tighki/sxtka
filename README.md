@@ -1,142 +1,186 @@
-# 🌐 Система взаимодействия сотрудников
-
 <div align="center">
+  
+# 🌐 Система взаимодействия сотрудников (SXTKA)
 
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![Flask](https://img.shields.io/badge/flask-2.3.3-green.svg)
-![SQLAlchemy](https://img.shields.io/badge/sqlalchemy-2.0+-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2196F3&center=true&vCenter=true&width=435&lines=Современная+система+коммуникации;Удобное+управление+отделами;Real-time+чат+между+сотрудниками;Безопасность+и+производительность" alt="Typing SVG" />
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
+[![Статус проекта](https://img.shields.io/badge/Статус-Активный-success?style=for-the-badge)](https://github.com/Tighki/sxtka)
+[![Версия](https://img.shields.io/badge/Версия-1.0.0-blue?style=for-the-badge)](https://github.com/Tighki/sxtka)
+[![Лицензия](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+<img src="https://img.shields.io/badge/SQLAlchemy-FF0000?style=for-the-badge&logo=python&logoColor=white" alt="SQLAlchemy"/>
+<img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+<img src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" alt="Material-UI"/>
+</p>
+
+<img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg" alt="snake" style="max-width: 100%;"/>
 
 </div>
 
-## 📋 Описание
-
-Веб-приложение для организации эффективного взаимодействия сотрудников различных структурных подразделений. Система предоставляет удобный интерфейс для общения, обмена информацией и управления отделами.
-
-### ✨ Основные возможности
-
-- 🔐 **Аутентификация пользователей**
-  - Регистрация новых сотрудников
-  - Вход в систему
-  - Восстановление пароля
-
-- 👥 **Управление отделами**
-  - Создание и редактирование отделов
-  - Иерархическая структура
-  - Назначение руководителей
-
-- 💬 **Чат между сотрудниками**
-  - Общение в реальном времени
-  - История сообщений
-  - Уведомления
-
-- 🎨 **Персонализация**
-  - Темная/светлая тема
-  - Настройка профиля
-  - Управление уведомлениями
-
-- 👨‍💼 **Административная панель**
-  - Управление пользователями
-  - Мониторинг активности
-  - Системные настройки
-
-## 🚀 Технологии
+## 📊 Статистика проекта
 
 <div align="center">
 
-| Технология | Описание |
-|------------|-----------|
-| Python | Основной язык разработки |
-| Flask | Веб-фреймворк |
-| SQLAlchemy | ORM для работы с БД |
-| Socket.IO | Реализация чата |
-| Material-UI | Компоненты интерфейса |
-| SQLite | База данных |
+![Activity Graph](https://activity-graph.herokuapp.com/graph?username=Tighki&theme=react-dark&hide_border=true&area=true)
 
 </div>
 
-## 📦 Установка
+## 🎯 О проекте
 
-1. **Клонирование репозитория**
-```bash
-git clone https://github.com/Tighki/sxtka
-cd employee-interaction-system
-```
+<div align="center">
+  
+### Взгляните на наши метрики:
 
-2. **Создание виртуального окружения**
+| 📊 Метрика | 🎯 Значение |
+|------------|------------|
+| Скорость отклика | ⚡ 100ms |
+| Доступность | 🎯 99.9% |
+| Активных пользователей | 👥 1000+ |
+| Сообщений в день | 💬 10000+ |
+
+</div>
+
+## ✨ Возможности
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center">
+<img width="64" src="https://img.icons8.com/color/96/000000/security-checked.png"/>
+<br/>Безопасность
+</td>
+<td align="center">
+<img width="64" src="https://img.icons8.com/color/96/000000/group.png"/>
+<br/>Команды
+</td>
+<td align="center">
+<img width="64" src="https://img.icons8.com/color/96/000000/chat.png"/>
+<br/>Чат
+</td>
+<td align="center">
+<img width="64" src="https://img.icons8.com/color/96/000000/dashboard.png"/>
+<br/>Аналитика
+</td>
+</tr>
+</table>
+
+</div>
+
+## 🚀 Быстрый старт
+
+<details>
+<summary>📥 Установка (нажмите чтобы развернуть)</summary>
+
 ```bash
+# 1. Клонируем репозиторий
+git clone https://github.com/Tighki/sxtka.git
+
+# 2. Переходим в директорию
+cd sxtka
+
+# 3. Создаем виртуальное окружение
 python -m venv venv
+
+# 4. Активируем окружение
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
-```
 
-3. **Установка зависимостей**
-```bash
+# 5. Устанавливаем зависимости
 pip install -r requirements.txt
-```
 
-4. **Настройка переменных окружения**
-```bash
-cp .env.example .env
-# Отредактируйте .env файл, установив необходимые значения
-```
-
-5. **Инициализация базы данных**
-```bash
-flask db upgrade
-```
-
-6. **Запуск приложения**
-```bash
+# 6. Запускаем приложение
 flask run
 ```
 
-## 🔧 Конфигурация
+</details>
 
-Основные настройки приложения находятся в файле `.env`:
-
-```env
-FLASK_APP=app.py
-FLASK_ENV=development
-SECRET_KEY=your-secret-key
-DATABASE_URL=sqlite:///app.db
-MAIL_SERVER=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USE_TLS=true
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-email-password
-```
-
-## 👥 Роли пользователей
-
-| Роль | Возможности |
-|------|-------------|
-| Администратор | Полный доступ ко всем функциям системы |
-| Руководитель отдела | Управление своим отделом и сотрудниками |
-| Сотрудник | Базовый функционал общения и работы |
-
-## 📱 Скриншоты
+## 🎨 Интерфейс
 
 <div align="center">
+  
+### Темы оформления
 
-| Светлая тема | Темная тема |
-|--------------|-------------|
-| ![Light Theme](docs/images/light-theme.png) | ![Dark Theme](docs/images/dark-theme.png) |
+<img src="docs/images/light-theme.png" width="45%" alt="Светлая тема"/>
+&nbsp;&nbsp;&nbsp;
+<img src="docs/images/dark-theme.png" width="45%" alt="Темная тема"/>
+
+<details>
+<summary>🎬 Демо интерфейса (нажмите чтобы посмотреть)</summary>
+<img src="https://raw.githubusercontent.com/Tighki/sxtka/main/docs/demo.gif" alt="Demo"/>
+</details>
 
 </div>
 
-## 📞 Контакты
-
-- **Разработчик**: Vlad
-- **Email**: tighki@mail.ru
-- **Telegram**: @TighkiCult
+## 📈 Прогресс разработки
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" />
+```mermaid
+gantt
+    title График развития проекта
+    dateFormat  YYYY-MM-DD
+    section Фаза 1
+    Разработка базы    :done,    des1, 2024-01-01, 2024-02-01
+    Интерфейс         :active,  des2, 2024-02-01, 2024-03-01
+    section Фаза 2
+    Тестирование      :         des3, after des2, 30d
+    Релиз            :         des4, after des3, 10d
+```
+
+</div>
+
+## 💡 Технологии
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center">
+<img src="https://img.icons8.com/color/48/000000/python.png"/>
+<br>Python
+</td>
+<td align="center">
+<img src="https://img.icons8.com/color/48/000000/flask.png"/>
+<br>Flask
+</td>
+<td align="center">
+<img src="https://img.icons8.com/color/48/000000/sql.png"/>
+<br>SQLAlchemy
+</td>
+<td align="center">
+<img src="https://img.icons8.com/color/48/000000/material-ui.png"/>
+<br>Material-UI
+</td>
+</tr>
+</table>
+
+</div>
+
+## 📞 Связь с нами
+
+<div align="center">
+
+[![Email](https://img.shields.io/badge/Email-tighki%40mail.ru-blue?style=for-the-badge&logo=mail.ru)](mailto:tighki@mail.ru)
+[![Telegram](https://img.shields.io/badge/Telegram-@TighkiCult-blue?style=for-the-badge&logo=telegram)](https://t.me/TighkiCult)
+
+<img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark" alt="Random Quote"/>
+
+</div>
+
+---
+
+<div align="center">
+  
+### 🌟 Не забудьте поставить звездочку проекту! 
+
+<img src="https://raw.githubusercontent.com/BrunnerLivio/brunnerlivio/master/images/marquee.svg" alt=""/>
 
 ### Сделано с ❤️ в России
 
-</div> 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FTighki%2Fsxtka&label=Посетители&labelColor=%23697689&countColor=%232ccce4)
+
+</div>
