@@ -5,11 +5,21 @@
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2196F3&center=true&vCenter=true&width=435&lines=Современная+система+коммуникации;Удобное+управление+отделами;Real-time+чат+между+сотрудниками;Безопасность+и+производительность" alt="Typing SVG" />
 
 <p align="center">
+<a href="https://www.python.org/" target="_blank">
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+</a>
+<a href="https://flask.palletsprojects.com/" target="_blank">
 <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+</a>
+<a href="https://www.sqlalchemy.org/" target="_blank">
 <img src="https://img.shields.io/badge/SQLAlchemy-FF0000?style=for-the-badge&logo=python&logoColor=white" alt="SQLAlchemy"/>
+</a>
+<a href="https://www.sqlite.org/" target="_blank">
 <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+</a>
+<a href="https://mui.com/" target="_blank">
 <img src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" alt="Material-UI"/>
+</a>
 </p>
 
 <img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg" alt="snake" style="max-width: 100%;"/>
@@ -121,20 +131,28 @@ flask run
 <table>
 <tr>
 <td align="center">
+<a href="https://www.python.org/" target="_blank">
 <img src="https://img.icons8.com/color/48/000000/python.png"/>
 <br>Python
+</a>
 </td>
 <td align="center">
+<a href="https://flask.palletsprojects.com/" target="_blank">
 <img src="https://img.icons8.com/color/48/000000/flask.png"/>
 <br>Flask
+</a>
 </td>
 <td align="center">
+<a href="https://www.sqlalchemy.org/" target="_blank">
 <img src="https://img.icons8.com/color/48/000000/sql.png"/>
 <br>SQLAlchemy
+</a>
 </td>
 <td align="center">
+<a href="https://mui.com/" target="_blank">
 <img src="https://img.icons8.com/color/48/000000/material-ui.png"/>
 <br>Material-UI
+</a>
 </td>
 </tr>
 </table>
