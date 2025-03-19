@@ -128,34 +128,44 @@ flask run
 
 <div align="center">
 
-<table>
-<tr>
-<td align="center">
-<a href="https://www.python.org/" target="_blank">
-<img src="https://img.icons8.com/color/48/000000/python.png"/>
-<br>Python
-</a>
-</td>
-<td align="center">
-<a href="https://flask.palletsprojects.com/" target="_blank">
-<img src="https://img.icons8.com/color/48/000000/flask.png"/>
-<br>Flask
-</a>
-</td>
-<td align="center">
-<a href="https://www.sqlalchemy.org/" target="_blank">
-<img src="https://img.icons8.com/color/48/000000/sql.png"/>
-<br>SQLAlchemy
-</a>
-</td>
-<td align="center">
-<a href="https://mui.com/" target="_blank">
-<img src="https://img.icons8.com/color/48/000000/material-ui.png"/>
-<br>Material-UI
-</a>
-</td>
-</tr>
-</table>
+<div style="background: #1a1b27; padding: 20px; border-radius: 10px; margin: 10px 0;">
+  <a href="https://www.python.org/" target="_blank" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" />
+  </a>
+  <a href="https://flask.palletsprojects.com/" target="_blank" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://skillicons.dev/icons?i=flask" width="48" height="48" alt="Flask" />
+  </a>
+  <a href="https://www.sqlalchemy.org/" target="_blank" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="48" height="48" alt="SQLAlchemy" />
+  </a>
+  <a href="https://www.sqlite.org/" target="_blank" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://skillicons.dev/icons?i=sqlite" width="48" height="48" alt="SQLite" />
+  </a>
+  <a href="https://mui.com/" target="_blank" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://skillicons.dev/icons?i=materialui" width="48" height="48" alt="Material-UI" />
+  </a>
+</div>
+
+<div style="margin-top: 20px;">
+  <a href="https://www.python.org/" target="_blank">
+    <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  </a>
+  <a href="https://flask.palletsprojects.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+  </a>
+  <a href="https://www.sqlalchemy.org/" target="_blank">
+    <img src="https://img.shields.io/badge/SQLAlchemy-1.4+-D71F00?style=for-the-badge&logo=python&logoColor=white" alt="SQLAlchemy"/>
+  </a>
+</div>
+
+<div style="margin-top: 10px;">
+  <a href="https://www.sqlite.org/" target="_blank">
+    <img src="https://img.shields.io/badge/SQLite-3.0+-07405E?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+  </a>
+  <a href="https://mui.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Material--UI-5.0+-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" alt="Material-UI"/>
+  </a>
+</div>
 
 </div>
 
