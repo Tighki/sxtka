@@ -61,7 +61,7 @@
 
 1. **Клонирование репозитория**
 ```bash
-git clone https://github.com/Tighki/sxtka
+git clone https://github.com/your-username/employee-interaction-system.git
 cd employee-interaction-system
 ```
 

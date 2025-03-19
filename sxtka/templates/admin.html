@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Админ-панель{% endblock %}
+
+{% block content %}
+<div class="admin-panel">
+    <h2>Управление пользователями</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя пользователя</th>
+                    <th>Email</th>
+                    <th>Отдел</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <select class="form-control department-select" data-user-id="{{ user.id }}">
+                            <option value="">Не назначен</option>
+                            {% for department in departments %}
+                                <option value="{{ department.id }}" {% if user.department_id == department.id %}selected{% endif %}>
+                                    {{ department.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        {% if user.is_admin %}
+                            Администратор
+                        {% else %}
+                            Пользователь
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-primary toggle-admin" data-user-id="{{ user.id }}">
+                            {% if user.is_admin %}
+                                Снять админа
+                            {% else %}
+                                Сделать админом
+                            {% endif %}
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-user" data-user-id="{{ user.id }}">
+                            Удалить
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="admin-panel mt-4">
+    <h2>Управление отделами</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Существующие отделы</h4>
+            <div class="department-tree">
+                {% for department in departments %}
+                    {% if not department.parent_id %}
+                        <div class="department-item">
+                            {{ department.name }}
+                            <button class="btn btn-sm btn-danger delete-department" data-department-id="{{ department.id }}">
+                                Удалить
+                            </button>
+                            {% set ns = namespace(found=false) %}
+                            {% for sub_dept in departments %}
+                                {% if sub_dept.parent_id == department.id %}
+                                    {% if not ns.found %}
+                                        <ul class="department-tree">
+                                    {% endif %}
+                                    {% set ns.found = true %}
+                                    <li class="department-item">
+                                        {{ sub_dept.name }}
+                                        <button class="btn btn-sm btn-danger delete-department" data-department-id="{{ sub_dept.id }}">
+                                            Удалить
+                                        </button>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if ns.found %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <h4>Добавить отдел</h4>
+            <form id="add-department-form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Название отдела</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="parent_id" class="form-label">Родительский отдел</label>
+                    <select class="form-control" id="parent_id" name="parent_id">
+                        <option value="">Нет</option>
+                        {% for department in departments %}
+                            <option value="{{ department.id }}">{{ department.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Обработка удаления пользователя
+    document.querySelectorAll('.delete-user').forEach(button => {
+        button.addEventListener('click', function() {
+            if (confirm('Вы уверены, что хотите удалить этого пользователя?')) {
+                const userId = this.dataset.userId;
+                fetch(`/admin/delete_user/${userId}`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    }
+                });
+            }
+        });
+    });
+
+    // Обработка изменения статуса администратора
+    document.querySelectorAll('.toggle-admin').forEach(button => {
+        button.addEventListener('click', function() {
+            const userId = this.dataset.userId;
+            fetch(`/admin/toggle_admin/${userId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                }
+            });
+        });
+    });
+
+    // Обработка удаления отдела
+    document.querySelectorAll('.delete-department').forEach(button => {
+        button.addEventListener('click', function() {
+            if (confirm('Вы уверены, что хотите удалить этот отдел?')) {
+                const departmentId = this.dataset.departmentId;
+                fetch(`/admin/delete_department/${departmentId}`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    }
+                });
+            }
+        });
+    });
+
+    // Обработка изменения отдела пользователя
+    document.querySelectorAll('.department-select').forEach(select => {
+        select.addEventListener('change', function() {
+            const userId = this.dataset.userId;
+            const departmentId = this.value;
+            
+            fetch(`/admin/update_user_department/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    department_id: departmentId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Показываем уведомление об успешном обновлении
+                    alert('Отдел пользователя успешно обновлен');
+                } else {
+                    // В случае ошибки возвращаем предыдущее значение
+                    location.reload();
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
+ 
